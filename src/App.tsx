@@ -2,12 +2,10 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Produtos from './containers/Produtos'
 import { GlobalStyle } from './styles'
-import { Provider } from 'react-redux'
-import { store, RootState } from './store'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { adicionar } from './store/reducers/carrinho'
 import { useGetProdutosQuery } from './services/api'
+import { RootState } from './store'
 
 export type Produto = {
   id: number
@@ -41,7 +39,7 @@ function App() {
   if (error) return <p>Erro ao carregar produtos</p>
 
   return (
-    <Provider store={store}>
+    <>
       <GlobalStyle />
       <div className="container">
         <Header favoritos={favoritos} itensNoCarrinho={itensNoCarrinho} />
@@ -52,7 +50,7 @@ function App() {
           adicionarAoCarrinho={adicionarAoCarrinho}
         />
       </div>
-    </Provider>
+    </>
   )
 }
 
